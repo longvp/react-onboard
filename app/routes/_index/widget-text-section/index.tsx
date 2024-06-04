@@ -46,7 +46,7 @@ const WidgetTextSection: React.FC<IProps> = ({
               <Icon source={TextIcon} />
             </div>
             <div className={styles.text}>
-              <Text as="span" tone="critical">
+              <Text as="span" fontWeight="bold">
                 Widget Text
               </Text>
             </div>

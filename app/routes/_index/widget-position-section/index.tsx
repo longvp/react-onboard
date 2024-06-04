@@ -40,7 +40,9 @@ const WidgetPositionSection: React.FC<IProps> = ({
               <Icon source={IconsIcon} />
             </div>
             <div className={styles.text}>
-              <Text as="span">Widget Position</Text>
+              <Text as="span" fontWeight="bold">
+                Widget Position
+              </Text>
             </div>
           </InlineStack>
         </Box>

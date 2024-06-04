@@ -51,7 +51,7 @@ const WidgetAppearanceSection: React.FC<IProps> = ({
               <Icon source={PaintBrushFlatIcon} tone="critical" />
             </div>
             <div className={styles.text}>
-              <Text as="span" tone="critical">
+              <Text as="span" fontWeight="bold">
                 Widget Appearance
               </Text>
             </div>
