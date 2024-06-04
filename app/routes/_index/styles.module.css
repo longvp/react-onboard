@@ -1,0 +1,59 @@
+.header {
+  background-color: black;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 20px;
+  height: 60px;
+  position: sticky;
+  left: 0;
+  right: 0;
+}
+
+.unsavedChangeText {
+  color: white;
+  font-weight: 600;
+  font-size: 14px;
+}
+
+.buttonDiscard button {
+  border: 1px solid white;
+  background-color: black;
+  color: white;
+  outline: none;
+  box-shadow: none;
+  border-radius: 4px;
+}
+
+.buttonSave button {
+  border: 1px solid #005bd3;
+  background-color: #005bd3;
+  color: white;
+  outline: none;
+  box-shadow: none;
+  border-radius: 4px;
+}
+
+.buttonSave button:hover {
+  border: 1px solid #005bd3;
+  background-color: #005bd3;
+  color: white;
+}
+
+.content {
+  width: 1000px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+.heading {
+  font-size: 20px;
+  font-weight: 600;
+  margin-bottom: 20px;
+}
+
+.formLayout {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}

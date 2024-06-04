@@ -1,0 +1,6 @@
+.title {
+}
+
+.buttonToggle > .Polaris-Icon svg {
+  fill: red !important;
+}
