@@ -2,34 +2,28 @@ import type { LoaderFunctionArgs } from "@remix-run/node";
 import { json, redirect } from "@remix-run/node";
 import { useLoaderData } from "@remix-run/react";
 import {
-  Box,
   Button,
   ButtonGroup,
-  FormLayout,
-  Icon,
-  InlineStack,
   Layout,
   AppProvider as PolarisAppProvider,
-  Select,
-  Text,
-  TextField,
 } from "@shopify/polaris";
-import { PaintBrushFlatIcon, TextIcon } from "@shopify/polaris-icons";
 import polarisStyles from "@shopify/polaris/build/esm/styles.css?url";
 import polarisTranslations from "@shopify/polaris/locales/en.json";
 import { Form, Formik, FormikProps } from "formik";
-import { useCallback, useRef } from "react";
-import { Collapse } from "~/components";
-import {
-  FIRST_DAY_OF_CALENDAR_OPTIONS,
-  LANGUAGE_OPTIONS,
-  LAYOUT_OPTIONS,
-} from "~/constants";
+import { useMemo, useRef } from "react";
 import { IFormValues } from "~/models";
-import { FormSchema } from "~/validation";
+import { FormSchema } from "~/validations";
 import { login } from "../../shopify.server";
-import WigetPositionSection from "./WigetPositionSection";
 import styles from "./styles.module.css";
+import WidgetAppearanceSection from "./widget-appearance-section";
+import WidgetPositionSection from "./widget-position-section";
+import WidgetTextSection from "./widget-text-section";
+import {
+  CALENDAR_LANGUAGE_OPTIONS,
+  FIRST_DAY_OF_CALENDAR_OPTIONS,
+  LAYOUT_OPTIONS,
+  DATE_FORMAT_OPTIONS,
+} from "~/utilities/constants";
 
 export const links = () => [{ rel: "stylesheet", href: polarisStyles }];
 
@@ -47,18 +41,31 @@ export default function App() {
   const { polarisTranslations } = useLoaderData<typeof loader>();
 
   const formikRef = useRef<FormikProps<IFormValues>>(null);
-
-  const handleDiscard = useCallback(() => {
-    formikRef?.current?.resetForm();
+  const initialValues: IFormValues = useMemo(() => {
+    return {
+      widgetPosition: [],
+      layout: LAYOUT_OPTIONS[0].value,
+      calendarLanguage: CALENDAR_LANGUAGE_OPTIONS[0].value,
+      date: DATE_FORMAT_OPTIONS[0].value,
+      titleColor: "#303030",
+      calendarLayout: LAYOUT_OPTIONS[0].value,
+      alwaysOpenCalendar: false,
+      firstDayOfCalendar: FIRST_DAY_OF_CALENDAR_OPTIONS[0].value,
+      themeColor: "#2E85FF",
+      messageTextColor: "#2C1717",
+    };
   }, []);
 
-  const handleSubmit = useCallback((values: IFormValues) => {
+  // const handleDiscard = () => {
+  //   formikRef?.current?.resetForm();
+  // };
+
+  const handleSubmit = (values: IFormValues) => {
     console.log(values);
-  }, []);
+  };
 
   return (
     <PolarisAppProvider i18n={polarisTranslations}>
-      {/* <Page fullWidth > */}
       <div className={styles.header}>
         <span className={styles.unsavedChangeText}>Unsaved Change</span>
         <ButtonGroup>
@@ -73,9 +80,9 @@ export default function App() {
         </ButtonGroup>
       </div>
       <div className={styles.content}>
-        <h3 className={styles.heading}>Wiget Setting</h3>
+        <h3 className={styles.heading}>Widget Setting</h3>
         <Formik
-          initialValues={{}}
+          initialValues={initialValues}
           validationSchema={FormSchema}
           onSubmit={handleSubmit}
           innerRef={formikRef}
@@ -87,118 +94,40 @@ export default function App() {
             setFieldValue,
             isSubmitting,
             errors,
+            touched,
+            ...rest
           }) => (
             <Form>
               <Layout>
-                <WigetPositionSection
-                  values={values}
-                  setFieldValue={setFieldValue}
-                  errors={errors}
-                />
                 <Layout.Section>
-                  <Collapse
-                    title={
-                      <Box paddingBlockEnd="400">
-                        <InlineStack>
-                          <Icon source={PaintBrushFlatIcon} tone="critical" />
-                          <Text as="span" tone="critical">
-                            Widget Appearance
-                          </Text>
-                        </InlineStack>
-                      </Box>
-                    }
-                  >
-                    <Layout>
-                      <Layout.Section variant="oneThird">
-                        <FormLayout>
-                          <Select label="Layout" options={LAYOUT_OPTIONS} />
-                          <Select
-                            label="Calendar language"
-                            options={LANGUAGE_OPTIONS}
-                          />
-                          <Select
-                            label="Date format"
-                            options={LANGUAGE_OPTIONS}
-                          />
-                          <TextField label="Title color" autoComplete="off" />
-                        </FormLayout>
-                      </Layout.Section>
-                      <Layout.Section variant="oneThird">
-                        <FormLayout>
-                          <Select
-                            label="Calendar layout"
-                            options={LAYOUT_OPTIONS}
-                          />
-
-                          <Select
-                            label="First day of calendar"
-                            options={FIRST_DAY_OF_CALENDAR_OPTIONS}
-                          />
-                          <TextField label="Theme color" autoComplete="off" />
-                          <TextField
-                            label="Required message text color"
-                            autoComplete="off"
-                          />
-                        </FormLayout>
-                      </Layout.Section>
-                    </Layout>
-                  </Collapse>
+                  <WidgetPositionSection
+                    values={values}
+                    setFieldValue={setFieldValue}
+                    errors={errors}
+                    touched={touched}
+                  />
                 </Layout.Section>
                 <Layout.Section>
-                  <Collapse
-                    title={
-                      <Box paddingBlockEnd="400">
-                        <InlineStack>
-                          <Icon source={TextIcon} tone="critical" />
-                          <Text as="span" tone="critical">
-                            Widget Text
-                          </Text>
-                        </InlineStack>
-                      </Box>
-                    }
-                  >
-                    <Layout>
-                      <Layout.Section variant="oneThird">
-                        <FormLayout>
-                          <Select label="Layout" options={LAYOUT_OPTIONS} />
-                          <Select
-                            label="Calendar language"
-                            options={LANGUAGE_OPTIONS}
-                          />
-                          <Select
-                            label="Date format"
-                            options={LANGUAGE_OPTIONS}
-                          />
-                          <TextField label="Title color" autoComplete="off" />
-                        </FormLayout>
-                      </Layout.Section>
-                      <Layout.Section variant="oneThird">
-                        <FormLayout>
-                          <Select
-                            label="Calendar layout"
-                            options={LAYOUT_OPTIONS}
-                          />
-
-                          <Select
-                            label="First day of calendar"
-                            options={FIRST_DAY_OF_CALENDAR_OPTIONS}
-                          />
-                          <TextField label="Theme color" autoComplete="off" />
-                          <TextField
-                            label="Required message text color"
-                            autoComplete="off"
-                          />
-                        </FormLayout>
-                      </Layout.Section>
-                    </Layout>
-                  </Collapse>
+                  <WidgetAppearanceSection
+                    values={values}
+                    setFieldValue={setFieldValue}
+                    errors={errors}
+                    touched={touched}
+                  />
+                </Layout.Section>
+                <Layout.Section>
+                  <WidgetTextSection
+                    values={values}
+                    setFieldValue={setFieldValue}
+                    errors={errors}
+                    touched={touched}
+                  />
                 </Layout.Section>
               </Layout>
             </Form>
           )}
         </Formik>
       </div>
-      {/* </Page> */}
     </PolarisAppProvider>
   );
 }

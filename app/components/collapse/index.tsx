@@ -1,4 +1,11 @@
-import { Button, Card, Collapsible, Icon, InlineStack } from "@shopify/polaris";
+import {
+  Box,
+  Button,
+  Card,
+  Collapsible,
+  Icon,
+  InlineStack,
+} from "@shopify/polaris";
 import { ChevronDownIcon } from "@shopify/polaris-icons";
 import React, { useId, useState } from "react";
 import styles from "./styles.module.css";
@@ -19,7 +26,7 @@ const Collapse: React.FC<CollapseProps> = ({ children, title }) => {
   return (
     <Card>
       <InlineStack align="space-between">
-        <div className={styles.title}>{title}</div>
+        <Box>{title}</Box>
         <div className={styles.buttonToggle}>
           <Button
             onClick={handleToggle}

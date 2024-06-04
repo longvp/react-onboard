@@ -1,6 +1,3 @@
-.title {
-}
-
-.buttonToggle > .Polaris-Icon svg {
-  fill: red !important;
+.buttonToggle button span span svg {
+  fill: #f62369 !important;
 }

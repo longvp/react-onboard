@@ -8,6 +8,8 @@
   position: sticky;
   left: 0;
   right: 0;
+  top: 0;
+  z-index: 1000;
 }
 
 .unsavedChangeText {
@@ -26,8 +28,8 @@
 }
 
 .buttonSave button {
-  border: 1px solid #005bd3;
-  background-color: #005bd3;
+  border: 1px solid #2c6ecb;
+  background-color: #2c6ecb;
   color: white;
   outline: none;
   box-shadow: none;
@@ -35,8 +37,8 @@
 }
 
 .buttonSave button:hover {
-  border: 1px solid #005bd3;
-  background-color: #005bd3;
+  border: 1px solid #2c6ecb;
+  background-color: #2c6ecb;
   color: white;
 }
 

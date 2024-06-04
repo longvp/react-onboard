@@ -1,15 +1,3 @@
-interface IWidgetAppearance {
-  layout: string;
-  language: string;
-  date: string;
-  color: string;
-  calendarLayout: string;
-  openCalendar: boolean;
-  dayOfCalendar: string;
-  themeColor: string;
-  messageTextColor: string;
-}
-
 interface IDelivery {
   deliveryDate: string;
   deliveryTime: string;
@@ -25,8 +13,18 @@ interface IStore {
 }
 
 export interface IFormValues {
-  wigetPosition?: string[];
-  widgetAppearance?: IWidgetAppearance;
+  widgetPosition: string[];
+  //  widget appearance
+  layout: string;
+  calendarLanguage: string;
+  date: string;
+  titleColor: string;
+  calendarLayout: string;
+  alwaysOpenCalendar: boolean;
+  firstDayOfCalendar: string;
+  themeColor: string;
+  messageTextColor: string;
+  // widget text
   delivery?: IDelivery;
   store?: IStore;
 }

@@ -16,10 +16,16 @@ export const LAYOUT_OPTIONS: IOption[] = [
   { label: "Date List", value: "date_list" },
 ];
 
-export const LANGUAGE_OPTIONS: IOption[] = [
+export const CALENDAR_LANGUAGE_OPTIONS: IOption[] = [
   { label: "Australia", value: "au" },
   { label: "English", value: "en" },
   { label: "Vietnamese", value: "vi" },
+];
+
+export const DATE_FORMAT_OPTIONS: IOption[] = [
+  { label: "10/05/22", value: "10/05/22" },
+  { label: "10/05/23", value: "10/05/23" },
+  { label: "10/05/24", value: "10/05/24" },
 ];
 
 export const FIRST_DAY_OF_CALENDAR_OPTIONS: IOption[] = [
