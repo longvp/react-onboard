@@ -85,7 +85,7 @@ const WidgetAppearanceSection: React.FC<IProps> = ({
       <Layout>
         <Layout.Section variant="oneThird">
           <FormLayout>
-            <div style={{ marginBottom: "30px" }}>
+            <div className={styles.inputFieldLayout}>
               <Field name="layout">
                 {({ field }: any) => (
                   <Select

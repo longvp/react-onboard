@@ -6,6 +6,10 @@
   color: #f62369;
 }
 
+.inputFieldLayout {
+  margin-bottom: 30px;
+}
+
 .inputFieldColor {
   position: relative;
 }
@@ -21,4 +25,18 @@
   right: 0;
   top: 24px;
   z-index: 100;
+}
+
+.inputFieldColor .inputColor::-moz-color-swatch {
+  border: none;
+}
+
+.inputFieldColor .inputColor::-webkit-color-swatch {
+  border: none;
+}
+
+@media screen and (max-width: 580px) {
+  .inputFieldLayout {
+    margin-bottom: 0;
+  }
 }
