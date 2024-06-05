@@ -104,7 +104,6 @@ export default function App() {
                     setFieldValue={setFieldValue}
                     errors={errors}
                     touched={touched}
-                    handleChange={handleChange}
                   />
                 </Layout.Section>
                 <Layout.Section>

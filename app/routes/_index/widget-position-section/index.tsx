@@ -23,7 +23,6 @@ interface IProps {
   ) => Promise<void | FormikErrors<IFormValues>>;
   errors: FormikErrors<IFormValues>;
   touched: FormikTouched<IFormValues>;
-  handleChange: (e: React.ChangeEvent<any>) => void;
 }
 
 const WidgetPositionSection: React.FC<IProps> = ({
@@ -31,7 +30,6 @@ const WidgetPositionSection: React.FC<IProps> = ({
   setFieldValue,
   errors,
   touched,
-  handleChange,
 }) => {
   return (
     <Collapse
