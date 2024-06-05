@@ -1,5 +1,7 @@
 import { IOption } from "~/models";
 
+export const HEX_COLOR_REGEX = /^#([0-9A-Fa-f]{3}|[0-9A-Fa-f]{6})$/;
+
 export const WIDGET_POSITION_OPTIONS: IOption[] = [
   {
     label: "Show the calendar at the product page",
@@ -17,9 +19,12 @@ export const LAYOUT_OPTIONS: IOption[] = [
 ];
 
 export const CALENDAR_LANGUAGE_OPTIONS: IOption[] = [
-  { label: "Australia", value: "au" },
-  { label: "English", value: "en" },
-  { label: "Vietnamese", value: "vi" },
+  { label: "Arabic", value: "arabic" },
+  { label: "Belarusian", value: "belarusian" },
+  { label: "Bulgarian", value: "bulgarian" },
+  { label: "Catalan", value: "catalan" },
+  { label: "English", value: "english" },
+  { label: "Vietnamese", value: "vietnamese" },
 ];
 
 export const DATE_FORMAT_OPTIONS: IOption[] = [

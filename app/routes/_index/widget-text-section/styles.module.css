@@ -5,3 +5,27 @@
 .text span {
   color: #f62369;
 }
+
+.tabs {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 10px;
+}
+
+.tabItem {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  text-align: center;
+  border-bottom: 3px solid #e1e3e5;
+  color: #6d7175;
+  font-weight: bold;
+  cursor: pointer;
+  padding: 20px;
+}
+
+.tabActive {
+  border-color: #f62369;
+  color: black;
+}

@@ -1,7 +1,6 @@
 import {
   Box,
   Checkbox,
-  ColorPicker,
   FormLayout,
   Icon,
   InlineStack,
@@ -14,13 +13,13 @@ import { PaintBrushFlatIcon } from "@shopify/polaris-icons";
 import { Field, FormikErrors, FormikTouched } from "formik";
 import React from "react";
 import { Collapse } from "~/components";
-import {
-  FIRST_DAY_OF_CALENDAR_OPTIONS,
-  CALENDAR_LANGUAGE_OPTIONS,
-  LAYOUT_OPTIONS,
-  DATE_FORMAT_OPTIONS,
-} from "~/utilities/constants";
 import { IFormValues } from "~/models";
+import {
+  CALENDAR_LANGUAGE_OPTIONS,
+  DATE_FORMAT_OPTIONS,
+  FIRST_DAY_OF_CALENDAR_OPTIONS,
+  LAYOUT_OPTIONS,
+} from "~/utilities/constants";
 import styles from "./styles.module.css";
 
 interface IProps {
@@ -33,8 +32,6 @@ interface IProps {
   errors: FormikErrors<IFormValues>;
   touched: FormikTouched<IFormValues>;
 }
-
-//error={getIn(errors, "widgetAppearance.layout")}
 
 const WidgetAppearanceSection: React.FC<IProps> = ({
   values,
@@ -100,9 +97,10 @@ const WidgetAppearanceSection: React.FC<IProps> = ({
                 />
               )}
             </Field>
+
             <Field name="titleColor">
               {({ field }: any) => (
-                <>
+                <div className={styles.inputFieldColor}>
                   <TextField
                     {...field}
                     label="Title color"
@@ -111,17 +109,16 @@ const WidgetAppearanceSection: React.FC<IProps> = ({
                     error={touched.titleColor && errors.titleColor}
                     autoComplete="off"
                   />
-                  <ColorPicker
-                    onChange={(color) => {
-                      console.log(color);
-                    }}
-                    color={{
-                      hue: 120,
-                      brightness: 1,
-                      saturation: 1,
-                    }}
+                  <input
+                    type="color"
+                    className={styles.inputColor}
+                    value={values.titleColor}
+                    style={{ backgroundColor: `${values.titleColor}` }}
+                    onChange={(e) =>
+                      setFieldValue("titleColor", e.target.value)
+                    }
                   />
-                </>
+                </div>
               )}
             </Field>
           </FormLayout>
@@ -172,26 +169,50 @@ const WidgetAppearanceSection: React.FC<IProps> = ({
             </Field>
             <Field name="themeColor">
               {({ field }: any) => (
-                <TextField
-                  {...field}
-                  label="Theme color"
-                  value={values.themeColor}
-                  onChange={(value) => setFieldValue("themeColor", value)}
-                  error={touched.themeColor && errors.themeColor}
-                  autoComplete="off"
-                />
+                <div className={styles.inputFieldColor}>
+                  <TextField
+                    {...field}
+                    label="Theme color"
+                    value={values.themeColor}
+                    onChange={(value) => setFieldValue("themeColor", value)}
+                    error={touched.themeColor && errors.themeColor}
+                    autoComplete="off"
+                  />
+                  <input
+                    type="color"
+                    className={styles.inputColor}
+                    value={values.themeColor}
+                    style={{ backgroundColor: `${values.themeColor}` }}
+                    onChange={(e) =>
+                      setFieldValue("themeColor", e.target.value)
+                    }
+                  />
+                </div>
               )}
             </Field>
             <Field name="messageTextColor">
               {({ field }: any) => (
-                <TextField
-                  {...field}
-                  label="Required message text color"
-                  value={values.messageTextColor}
-                  onChange={(value) => setFieldValue("messageTextColor", value)}
-                  error={touched.messageTextColor && errors.messageTextColor}
-                  autoComplete="off"
-                />
+                <div className={styles.inputFieldColor}>
+                  <TextField
+                    {...field}
+                    label="Required message text color"
+                    value={values.messageTextColor}
+                    onChange={(value) =>
+                      setFieldValue("messageTextColor", value)
+                    }
+                    error={touched.messageTextColor && errors.messageTextColor}
+                    autoComplete="off"
+                  />
+                  <input
+                    type="color"
+                    className={styles.inputColor}
+                    value={values.messageTextColor}
+                    style={{ backgroundColor: `${values.messageTextColor}` }}
+                    onChange={(e) =>
+                      setFieldValue("messageTextColor", e.target.value)
+                    }
+                  />
+                </div>
               )}
             </Field>
           </FormLayout>

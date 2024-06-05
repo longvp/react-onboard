@@ -1,6 +1,8 @@
 interface IDelivery {
-  deliveryDate: string;
-  deliveryTime: string;
+  title: string;
+  deliveryDateLabel: string;
+  deliveryDateTitle: string;
+  deliveryTimeTitle: string;
   messageText: string;
 }
 

@@ -5,3 +5,20 @@
 .text span {
   color: #f62369;
 }
+
+.inputFieldColor {
+  position: relative;
+}
+
+.inputFieldColor .inputColor {
+  height: 32px;
+  width: 30px;
+  border: 1px solid rgb(138, 138, 138);
+  border-left: none;
+  border-radius: 6px;
+  padding: 0;
+  position: absolute;
+  right: 0;
+  top: 24px;
+  z-index: 100;
+}

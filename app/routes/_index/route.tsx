@@ -12,18 +12,18 @@ import polarisTranslations from "@shopify/polaris/locales/en.json";
 import { Form, Formik, FormikProps } from "formik";
 import { useMemo, useRef } from "react";
 import { IFormValues } from "~/models";
+import {
+  CALENDAR_LANGUAGE_OPTIONS,
+  DATE_FORMAT_OPTIONS,
+  FIRST_DAY_OF_CALENDAR_OPTIONS,
+  LAYOUT_OPTIONS,
+} from "~/utilities/constants";
 import { FormSchema } from "~/validations";
 import { login } from "../../shopify.server";
 import styles from "./styles.module.css";
 import WidgetAppearanceSection from "./widget-appearance-section";
 import WidgetPositionSection from "./widget-position-section";
 import WidgetTextSection from "./widget-text-section";
-import {
-  CALENDAR_LANGUAGE_OPTIONS,
-  FIRST_DAY_OF_CALENDAR_OPTIONS,
-  LAYOUT_OPTIONS,
-  DATE_FORMAT_OPTIONS,
-} from "~/utilities/constants";
 
 export const links = () => [{ rel: "stylesheet", href: polarisStyles }];
 
@@ -39,7 +39,6 @@ export const loader = async ({ request }: LoaderFunctionArgs) => {
 
 export default function App() {
   const { polarisTranslations } = useLoaderData<typeof loader>();
-
   const formikRef = useRef<FormikProps<IFormValues>>(null);
   const initialValues: IFormValues = useMemo(() => {
     return {
@@ -52,7 +51,7 @@ export default function App() {
       alwaysOpenCalendar: false,
       firstDayOfCalendar: FIRST_DAY_OF_CALENDAR_OPTIONS[0].value,
       themeColor: "#2E85FF",
-      messageTextColor: "#2C1717",
+      messageTextColor: "#f62369",
     };
   }, []);
 
@@ -84,6 +83,7 @@ export default function App() {
         <Formik
           initialValues={initialValues}
           validationSchema={FormSchema}
+          validateOnChange={true}
           onSubmit={handleSubmit}
           innerRef={formikRef}
         >
@@ -95,7 +95,6 @@ export default function App() {
             isSubmitting,
             errors,
             touched,
-            ...rest
           }) => (
             <Form>
               <Layout>
@@ -105,6 +104,7 @@ export default function App() {
                     setFieldValue={setFieldValue}
                     errors={errors}
                     touched={touched}
+                    handleChange={handleChange}
                   />
                 </Layout.Section>
                 <Layout.Section>

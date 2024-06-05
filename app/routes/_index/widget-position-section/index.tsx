@@ -10,8 +10,8 @@ import { IconsIcon } from "@shopify/polaris-icons";
 import { Field, FormikErrors, FormikTouched } from "formik";
 import React from "react";
 import { Collapse } from "~/components";
-import { WIDGET_POSITION_OPTIONS } from "~/utilities/constants";
 import { IFormValues } from "~/models";
+import { WIDGET_POSITION_OPTIONS } from "~/utilities/constants";
 import styles from "./styles.module.css";
 
 interface IProps {
@@ -23,6 +23,7 @@ interface IProps {
   ) => Promise<void | FormikErrors<IFormValues>>;
   errors: FormikErrors<IFormValues>;
   touched: FormikTouched<IFormValues>;
+  handleChange: (e: React.ChangeEvent<any>) => void;
 }
 
 const WidgetPositionSection: React.FC<IProps> = ({
@@ -30,6 +31,7 @@ const WidgetPositionSection: React.FC<IProps> = ({
   setFieldValue,
   errors,
   touched,
+  handleChange,
 }) => {
   return (
     <Collapse
