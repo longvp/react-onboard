@@ -19,7 +19,7 @@ export const StoreSchema = Yup.object().shape({
 
 export const FormSchema = Yup.object().shape({
   widgetPosition: Yup.array()
-    .min(1, "At least one choice must be selected!")
+    .min(1, "This field is required!")
     .required("This field is required!"),
   layout: Yup.string().required("This field is required!"),
   calendarLanguage: Yup.string().required("This field is required!"),
