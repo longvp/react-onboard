@@ -8,7 +8,7 @@ import {
 } from "@shopify/polaris";
 import { IconsIcon } from "@shopify/polaris-icons";
 import { Field, FormikErrors, FormikTouched } from "formik";
-import React from "react";
+import React, { memo } from "react";
 import { Collapse } from "~/components";
 import { IFormValues } from "~/models";
 import { WIDGET_POSITION_OPTIONS } from "~/utilities/constants";
@@ -67,4 +67,4 @@ const WidgetPositionSection: React.FC<IProps> = ({
   );
 };
 
-export default WidgetPositionSection;
+export default memo(WidgetPositionSection);

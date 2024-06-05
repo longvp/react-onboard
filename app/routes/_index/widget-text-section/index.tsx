@@ -9,7 +9,7 @@ import {
 import { TextIcon } from "@shopify/polaris-icons";
 import classNames from "classnames";
 import { Field, FormikErrors, FormikTouched, getIn } from "formik";
-import React, { useState } from "react";
+import React, { memo } from "react";
 import { Collapse } from "~/components";
 import { IFormValues } from "~/models";
 import styles from "./styles.module.css";
@@ -23,6 +23,8 @@ interface IProps {
   ) => Promise<void | FormikErrors<IFormValues>>;
   errors: FormikErrors<IFormValues>;
   touched: FormikTouched<IFormValues>;
+  activeTab: string;
+  setActiveTab: (value: string) => void;
 }
 
 const WidgetTextSection: React.FC<IProps> = ({
@@ -30,9 +32,9 @@ const WidgetTextSection: React.FC<IProps> = ({
   setFieldValue,
   errors,
   touched,
+  activeTab,
+  setActiveTab,
 }) => {
-  const [activeTab, setActiveTab] = useState("delivery");
-
   const renderContentDeliverTab = () => {
     return (
       <FormLayout>
@@ -256,4 +258,4 @@ const WidgetTextSection: React.FC<IProps> = ({
   );
 };
 
-export default WidgetTextSection;
+export default memo(WidgetTextSection);

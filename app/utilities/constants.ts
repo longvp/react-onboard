@@ -13,6 +13,12 @@ export const WIDGET_POSITION_OPTIONS: IOption[] = [
   },
 ];
 
+export const DATE_FORMAT_OPTIONS: IOption[] = [
+  { label: "YYYY/MM/DD", value: "YYYY/MM/DD" },
+  { label: "YY-MM-DD", value: "YY-MM-DD" },
+  { label: "DD/MM/YYYY", value: "DD/MM/YYYY" },
+];
+
 export const LAYOUT_OPTIONS: IOption[] = [
   { label: "Calendar", value: "calendar" },
   { label: "Date List", value: "date_list" },
@@ -25,12 +31,6 @@ export const CALENDAR_LANGUAGE_OPTIONS: IOption[] = [
   { label: "Catalan", value: "catalan" },
   { label: "English", value: "english" },
   { label: "Vietnamese", value: "vietnamese" },
-];
-
-export const DATE_FORMAT_OPTIONS: IOption[] = [
-  { label: "10/05/22", value: "10/05/22" },
-  { label: "10/05/23", value: "10/05/23" },
-  { label: "10/05/24", value: "10/05/24" },
 ];
 
 export const FIRST_DAY_OF_CALENDAR_OPTIONS: IOption[] = [

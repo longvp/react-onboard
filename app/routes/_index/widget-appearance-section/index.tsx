@@ -5,13 +5,16 @@ import {
   Icon,
   InlineStack,
   Layout,
+  OptionList,
+  Popover,
   Select,
   Text,
   TextField,
 } from "@shopify/polaris";
-import { PaintBrushFlatIcon } from "@shopify/polaris-icons";
+import { PaintBrushFlatIcon, SelectIcon } from "@shopify/polaris-icons";
 import { Field, FormikErrors, FormikTouched } from "formik";
-import React from "react";
+import moment from "moment";
+import React, { memo, useCallback, useState } from "react";
 import { Collapse } from "~/components";
 import { IFormValues } from "~/models";
 import {
@@ -31,6 +34,7 @@ interface IProps {
   ) => Promise<void | FormikErrors<IFormValues>>;
   errors: FormikErrors<IFormValues>;
   touched: FormikTouched<IFormValues>;
+  initialValues: IFormValues;
 }
 
 const WidgetAppearanceSection: React.FC<IProps> = ({
@@ -38,7 +42,29 @@ const WidgetAppearanceSection: React.FC<IProps> = ({
   setFieldValue,
   errors,
   touched,
+  initialValues,
 }) => {
+  const [formatSelected, setFormatSelected] = useState<string[]>([
+    DATE_FORMAT_OPTIONS[0].value,
+  ]);
+  const [popoverActive, setPopoverActive] = useState(false);
+
+  const togglePopoverActive = useCallback(
+    () => setPopoverActive((popoverActive) => !popoverActive),
+    [],
+  );
+
+  const handleChangeFormatDate = (formatValues: string[]) => {
+    setFormatSelected(formatValues);
+    if (formatValues[0]) {
+      setFieldValue(
+        "date",
+        moment(initialValues.date).format(formatValues[0]).toString(),
+        true,
+      );
+    }
+  };
+
   return (
     <Collapse
       title={
@@ -85,18 +111,41 @@ const WidgetAppearanceSection: React.FC<IProps> = ({
                 />
               )}
             </Field>
-            <Field name="date">
-              {({ field }: any) => (
-                <Select
-                  {...field}
-                  label="Date format"
-                  value={values.date}
-                  options={DATE_FORMAT_OPTIONS}
-                  onChange={(value) => setFieldValue("date", value)}
-                  error={touched.date && errors.date}
-                />
-              )}
-            </Field>
+            <Popover
+              active={popoverActive}
+              activator={
+                <div style={{ position: "relative" }}>
+                  <div
+                    style={{
+                      position: "absolute",
+                      left: 0,
+                      right: 0,
+                      top: 0,
+                      bottom: 0,
+                      zIndex: 100,
+                      background: "transparent",
+                    }}
+                    onClick={togglePopoverActive}
+                  />
+                  <TextField
+                    label="Date format"
+                    value={values.date}
+                    autoComplete="off"
+                    suffix={<Icon source={SelectIcon} tone="base" />}
+                  />
+                </div>
+              }
+              onClose={togglePopoverActive}
+            >
+              <OptionList
+                title=""
+                onChange={(formatValues) =>
+                  handleChangeFormatDate(formatValues)
+                }
+                options={DATE_FORMAT_OPTIONS}
+                selected={formatSelected}
+              />
+            </Popover>
 
             <Field name="titleColor">
               {({ field }: any) => (
@@ -222,4 +271,4 @@ const WidgetAppearanceSection: React.FC<IProps> = ({
   );
 };
 
-export default WidgetAppearanceSection;
+export default memo(WidgetAppearanceSection);

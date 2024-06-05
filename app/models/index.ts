@@ -27,8 +27,8 @@ export interface IFormValues {
   themeColor: string;
   messageTextColor: string;
   // widget text
-  delivery?: IDelivery;
-  store?: IStore;
+  delivery?: IDelivery | null;
+  store?: IStore | null;
 }
 
 export interface IOption {
