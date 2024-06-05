@@ -54,6 +54,20 @@ export default function App() {
     firstDayOfCalendar: FIRST_DAY_OF_CALENDAR_OPTIONS[0].value,
     themeColor: "#DD1313",
     messageTextColor: "#DD1313",
+    delivery: {
+      title: "",
+      deliveryDateLabel: "",
+      deliveryDateTitle: "",
+      deliveryTimeTitle: "",
+      messageText: "",
+    },
+    store: {
+      storePickup: "",
+      storage: "",
+      pickupDate: "",
+      pickupTime: "",
+      messageText: "",
+    },
   });
 
   const [isChangeValue, setIsChangeValue] = useState(false);
@@ -72,41 +86,19 @@ export default function App() {
 
   useEffect(() => {
     if (activeTab === "delivery") {
-      const newValidationSchema = validationSchema.concat(
+      const newValidationSchema = FormSchema.concat(
         Yup.object().shape({
           delivery: DeliverySchema,
         }),
       );
       setValidationSchema(newValidationSchema);
-      setInitialValues((prev) => ({
-        ...prev,
-        delivery: {
-          title: "",
-          deliveryDateLabel: "",
-          deliveryDateTitle: "",
-          deliveryTimeTitle: "",
-          messageText: "",
-        },
-        store: null,
-      }));
     } else if (activeTab === "store") {
-      const newValidationSchema = validationSchema.concat(
+      const newValidationSchema = FormSchema.concat(
         Yup.object().shape({
           store: StoreSchema,
         }),
       );
       setValidationSchema(newValidationSchema);
-      setInitialValues((prev) => ({
-        ...prev,
-        delivery: null,
-        store: {
-          storePickup: "",
-          storage: "",
-          pickupDate: "",
-          pickupTime: "",
-          messageText: "",
-        },
-      }));
     }
   }, [activeTab]);
 
